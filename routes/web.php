@@ -24,6 +24,16 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+
+Route::post('/upload-unittest', 'App\Http\Controllers\TestFileUpload@unit_test')->name('upload.unittest');
+
+Route::get('/token', function () {
+
+    $token = csrf_token();
+    return response()->json(['token' => $token]);
+    // return csrf_token(); 
+});
+
 Route::get('upload', 'App\Http\Controllers\FileUploadController@index');
 
 Route::post('upload', 'App\Http\Controllers\FileUploadController@upload')->name('upload');
