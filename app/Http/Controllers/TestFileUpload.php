@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 class TestFileUpload extends Controller
 {
   
+    public function get_unit_test(){
+        echo csrf_token();
+    }
     public function unit_test(Request $request)
     {
         $fileTest = $request->file('files');
@@ -53,7 +56,7 @@ class TestFileUpload extends Controller
             $fileUpload = Http::withHeaders([
                 'Accept' => 'application/json',
                 // 'Content-Type' => 'multipart/form-data',  
-                'X-CSRF-TOKEN' => "{{ csrf_token() }}",  
+                // 'X-CSRF-TOKEN' => csrf_token(),  
                 'Token' => 'ZDIwYmUxMDEtYjcxNi00OGE0LWI3MDUtMzdjZTAzYThkMzFk',
                 ])->post('https://api.digidata.ai/cp_digidata/passive_liveness',[
                     "_token"=> "{{ csrf_token() }}",
