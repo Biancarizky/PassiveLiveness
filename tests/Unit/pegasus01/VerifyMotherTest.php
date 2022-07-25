@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class TestVerifyMother extends TestCase
+class VerifyMotherTest extends TestCase
 {
     use WithoutMiddleware;
 

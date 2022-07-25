@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class TestTaxExtrae extends TestCase
+class TaxExtraeTest extends TestCase
 {
     use WithoutMiddleware;
 

@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class TestVerifyPhonetAge extends TestCase
+class VerifyPhonetAgeTest extends TestCase
 {
     use WithoutMiddleware;
 

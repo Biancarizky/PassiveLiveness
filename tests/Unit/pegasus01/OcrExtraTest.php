@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class TestOcrExtra extends TestCase
+class OcrExtraTest extends TestCase
 {
     use WithoutMiddleware;
     
