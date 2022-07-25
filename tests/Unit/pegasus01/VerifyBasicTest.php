@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class TestVerifyBasic extends TestCase
+class VerifyBasicTest extends TestCase
 {
     /**
      * A basic unit test example.

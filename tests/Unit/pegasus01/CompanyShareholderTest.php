@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class TestCompanyShareholder extends TestCase
+class CompanyShareholderTest extends TestCase
 {
     use WithoutMiddleware;
 

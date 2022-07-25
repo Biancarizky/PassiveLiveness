@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class TestVerifyProperty extends TestCase
+class VerifyPropertyTest extends TestCase
 {
     use WithoutMiddleware;
 

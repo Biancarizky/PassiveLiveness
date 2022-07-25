@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class TestworkAddressPercentage extends TestCase
+class WorkAddressPercentageTest extends TestCase
 {
     use WithoutMiddleware;
 

@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class TestVerifySelfie extends TestCase
+class VerifySelfieTest extends TestCase
 {
     use WithoutMiddleware;
 

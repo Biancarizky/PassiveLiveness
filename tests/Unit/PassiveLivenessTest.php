@@ -43,8 +43,6 @@ class PassiveLivenessTest extends TestCase
                                     'data' => ['passed' => false]    
                                 ]
                             );
-      
-        
     }
 
     public function test_passiveLiveness_validation_invalid_photo(){
