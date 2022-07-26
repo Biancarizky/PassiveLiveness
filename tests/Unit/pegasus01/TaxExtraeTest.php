@@ -21,8 +21,6 @@ class TaxExtraeTest extends TestCase
                 "name"      => "usup suparta",
                 "birthdate" => "28-04-1996",
                 "birthplace"=> "bogor"
-            
-            
         ];
 
         $respons = $this->post(route('verify.tax.extra'), $data);
