@@ -10,7 +10,7 @@ class CompanyShareholderTest extends TestCase
 {
     use WithoutMiddleware;
 
-    public function test_company_shareholder_true()
+    public function test_companyshareholder_all_true()
     {
         $data = [
             "trx_id" => "",

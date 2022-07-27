@@ -330,4 +330,52 @@ class TestController extends Controller
             ]);
             return $fileUpload->json();
     }
+
+    public function negative_list(Request $request){
+        $nik = $request->input('nik');
+        $name = $request->input('name');
+        $pob = $request->input('pob');
+        $dob = $request->input('dob');
+
+
+        $fileUpload = Http::withHeaders([
+            'Accept' => 'application/json',
+            // 'Content-Type' => 'multipart/form-data',  
+            // 'X-CSRF-TOKEN' => csrf_token(),  
+            'Token' => 'ZDIwYmUxMDEtYjcxNi00OGE0LWI3MDUtMzdjZTAzYThkMzFk',
+            ])->post('https://api.digidata.ai/cp_digidata/negative_list',[
+                "_token"=> "{{ csrf_token() }}",
+
+                "nik" => $nik,
+                "name" => $name,
+                "pob" => $pob,
+                "dob" => $dob
+
+               
+            ]);
+            return $fileUpload->json();
+    }
+
+    public function verify_tax_company(Request $request){
+        $trx_id = $request->input('trx_id');
+        $npwp = $request->input('npwp');
+        $income = $request->input('income');
+
+
+        $fileUpload = Http::withHeaders([
+            'Accept' => 'application/json',
+            // 'Content-Type' => 'multipart/form-data',  
+            // 'X-CSRF-TOKEN' => csrf_token(),  
+            'Token' => 'ZDIwYmUxMDEtYjcxNi00OGE0LWI3MDUtMzdjZTAzYThkMzFk',
+            ])->post('https://api.digidata.ai/cp_digidata/verify_tax_company',[
+                "_token"=> "{{ csrf_token() }}",
+
+                "trx_id"    => $trx_id,
+                "npwp"      => $npwp,
+                "income"    => $income
+
+               
+            ]);
+            return $fileUpload->json();
+    }
 }

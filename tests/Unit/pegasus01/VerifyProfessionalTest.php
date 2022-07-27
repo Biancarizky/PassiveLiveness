@@ -10,7 +10,7 @@ class VerifyProfessionalTest extends TestCase
 {
     use WithoutMiddleware;
 
-    public function test_verify_professional_true()
+    public function test_verifyprofessional_all_true()
     {
         $data = [
             'trx_id' => "01",
@@ -30,7 +30,7 @@ class VerifyProfessionalTest extends TestCase
                             );
     }
 
-    public function test_verify_professional_not_nik()
+    public function test_verifyprofessional_invalidparameter()
     {
         $data = [
             'trx_id' => "01",

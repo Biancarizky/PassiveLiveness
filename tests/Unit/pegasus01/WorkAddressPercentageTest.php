@@ -10,7 +10,7 @@ class WorkAddressPercentageTest extends TestCase
 {
     use WithoutMiddleware;
 
-    public function test_testwork_address_percentage_true()
+    public function test_testworkaddresspercentage_all_true()
     {
         $data = [
             "trx_id"=> "1234567890",

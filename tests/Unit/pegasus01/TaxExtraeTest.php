@@ -10,7 +10,7 @@ class TaxExtraeTest extends TestCase
 {
     use WithoutMiddleware;
 
-    public function test_test_tax_extrae_data_filled_true()
+    public function test_taxextrae_all_true()
     {
         $data = [
             

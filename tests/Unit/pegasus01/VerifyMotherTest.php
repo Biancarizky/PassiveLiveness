@@ -10,7 +10,7 @@ class VerifyMotherTest extends TestCase
 {
     use WithoutMiddleware;
 
-    public function test_verify_mother_data_filled_true()
+    public function test_verifymother_all_true()
     {
         $data = [
             "trx_id"=> "01",
@@ -29,7 +29,7 @@ class VerifyMotherTest extends TestCase
 
     }
 
-    public function test_verify_mother_not_nik_true()
+    public function test_verifymother_invalidparameter()
     {
         $data = [
             "trx_id"=> "01",

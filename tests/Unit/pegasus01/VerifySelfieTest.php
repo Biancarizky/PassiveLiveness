@@ -10,7 +10,7 @@ class VerifySelfieTest extends TestCase
 {
     use WithoutMiddleware;
 
-    public function test_verify_selfie_true()
+    public function test_verifyselfie_all_true()
     {
         $data = [
             'trx_id' => "01",
@@ -27,7 +27,7 @@ class VerifySelfieTest extends TestCase
                             );
     }
 
-    public function test_verify_selfie_no_nik_true()
+    public function test_verifyselfie_invalidparameter()
     {
         $data = [
             'trx_id' => "01",
