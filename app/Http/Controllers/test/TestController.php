@@ -42,8 +42,50 @@ class TestController extends Controller
         $gestures_set = $request->input('gestures_set');
         // return $this->respondWithToken($token);
 
-        return $this->handle($gestures_set, $fileTest);
+        if ($fileTest == null){
+            // echo "tidak ada data";
+            $fileUpload = Http::withHeaders([
+                'Accept' => 'application/json',
+                // 'Content-Type' => 'multipart/form-data',  
+                // 'X-CSRF-TOKEN' => csrf_token(),  
+                'Token' => 'ZDIwYmUxMDEtYjcxNi00OGE0LWI3MDUtMzdjZTAzYThkMzFk',
+                ])->post('https://api.digidata.ai/cp_digidata/liveness_detection',[
+                    "_token"=> "{{ csrf_token() }}",
+                    'file' => '01',
+                    'gestures_set' => $gestures_set,
+                    'trx_id' => "01",
+                ]);
+                return $fileUpload->json();
+        }else{
+            return $this->handle($gestures_set, $fileTest);
+            // return $this->coba($gestures_set, $fileTest);
+        }
     }
+
+    public static function coba($gesturesSet, $images){
+
+        $data = array();
+        // $data = $gesturesSet;
+        // echo $data;
+        // foreach (explode(',', $gesturesSet) as $key) {
+        //     $data[] =  $key;
+        // }
+
+        $noGesturesSet = 1;
+
+        foreach ( explode(',', $gesturesSet) as $gestures )
+        {
+            $livenessData[] = [
+                'name'     => 'gestures_set',
+                'contents' => $gestures
+            ];
+
+            // $noGesturesSet++;
+        }
+
+        dd($livenessData);
+    }
+
 
     public static function handle($gesturesSet, $images)
     {
@@ -53,6 +95,19 @@ class TestController extends Controller
                 'contents' => $gesturesSet
             ]
         ];
+
+        // $noGesturesSet = 1;
+
+        // foreach ( explode(',', $gesturesSet) as $gestures )
+        // {
+        //     $livenessData[] = [
+        //         'name'     => 'gestures_set',
+        //         'contents' => $gestures
+        //     ];
+
+        //     $noGesturesSet++;
+        // }
+        
 
         $no = 1;
 
@@ -88,10 +143,11 @@ class TestController extends Controller
 
             $response = json_decode($client->getBody(), TRUE);
 
-            return [
-                'status' => true,
-                'response' => $response
-            ];
+            // return [
+            //     'status' => true,
+            //     'response' => $response
+            // ];
+            return  $response;
         }
         catch ( \Exception $e )
         {
