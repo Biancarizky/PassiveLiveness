@@ -10,7 +10,7 @@ class OcrExtraTest extends TestCase
 {
     use WithoutMiddleware;
     
-    public function test_ocr_extra_true()
+    public function test_ocrextra_all_true()
     {
         $data = [
             'files' => new \Illuminate\Http\UploadedFile(resource_path('..\public\test-files\ocr_extra.jpg'), 'public/test-files/ocr_extra.jpg', null, null, true),
@@ -26,7 +26,7 @@ class OcrExtraTest extends TestCase
                             );
     }
 
-    public function test_ocr_extra_false()
+    public function test_ocrextra_no_files_invalidparameter()
     {
         $data = [
             'files' => new \Illuminate\Http\UploadedFile(resource_path('..\public\test-files\coba.jpg'), 'public/test-files/coba.jpg', null, null, true),
@@ -42,7 +42,7 @@ class OcrExtraTest extends TestCase
                             );
     }
 
-    public function test_ocr_extra_not_image()
+    public function test_ocrextra_1001_invalidparameter()
     {
         $data = [
             'files' => "",

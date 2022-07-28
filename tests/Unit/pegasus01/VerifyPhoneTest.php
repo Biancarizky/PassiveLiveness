@@ -10,7 +10,7 @@ class VerifyPhoneTest extends TestCase
 {
     use WithoutMiddleware;
 
-    public function test_verify_phone_true()
+    public function test_verifyphone_all_true()
     {
         $data = [
             'trx_id' => "01",
@@ -27,7 +27,7 @@ class VerifyPhoneTest extends TestCase
                             );
     }
 
-    public function test_verify_phone_not_nik_true()
+    public function test_verifyphone_invalidparameter()
     {
         $data = [
             'trx_id' => "01",

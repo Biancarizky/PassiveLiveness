@@ -45,7 +45,7 @@ Route::group(['prefix' => 'test'], function() use ($router){
         Route::post('ocr-extra',             'test_ocr_extra')->name('ocr.extra');
         Route::post('liveness-detection',    'liveness_detection');
         Route::post('verify-basic',          'verify_basic')->name('verify.basic');
-        Route::post('verify-professiona`l',   'verify_professional')->name('verify.professional');
+        Route::post('verify-professional',   'verify_professional')->name('verify.professional');
         Route::post('verify-selfie',         'verify_selfie')->name('verify.selfie');
         Route::post('verify-mother',         'verify_mother')->name('verify.mother');
 
@@ -58,5 +58,8 @@ Route::group(['prefix' => 'test'], function() use ($router){
         Route::post('verify-workplace',      'verify_workplace')->name('verify.workplace');
         Route::post('verify-company-shareholder',      'verify_company_shareholder')->name('verify.company.shareholder');
         Route::post('work-address-percentage',      'work_address_percentage')->name('work.address.percentage');
+
+        Route::post('negative-list',      'negative_list')->name('negative.list');
+        Route::post('verify-tax-company',      'verify_tax_company')->name('verify.tax.company');
     });
 });

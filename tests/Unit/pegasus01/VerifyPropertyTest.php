@@ -10,10 +10,9 @@ class VerifyPropertyTest extends TestCase
 {
     use WithoutMiddleware;
 
-    public function test_test_tax_extrae_data_filled_true()
+    public function test_taxextrae_all_true()
     {
         $data = [
-            
             "trx_id"=> "",
             "nop"=> "317203100102600100",
             "property_name"=> "HERI NOVIANDI",

@@ -10,7 +10,7 @@ class VerifyPhoneExtraTest extends TestCase
 {
     use WithoutMiddleware;
 
-    public function test_verify_phone_true()
+    public function test_verifyphone_all_true()
     {
         $data = [
             'trx_id' => "01",

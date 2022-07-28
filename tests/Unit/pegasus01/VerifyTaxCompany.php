@@ -6,19 +6,19 @@ use Tests\TestCase;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class VerifyPhonetAgeTest extends TestCase
+class VerifyTaxCompany extends TestCase
 {
     use WithoutMiddleware;
 
-    public function test_verifyphone_all_true()
+    public function test_verifytaxcompany_all_true()
     {
         $data = [
-            'trx_id' => "01",
-            'nik' => "1810016008920003",
-            'phone' => "6281283693380",
+            "trx_id" => "",
+            "npwp" => "013084496091000",
+            "income" => "1500000000"
         ];
 
-        $respons = $this->post(route('verify.phone.age'), $data);
+        $respons = $this->post(route('verify.tax.company'), $data);
         $respons->assertJson(
                                 [
                                     'status' => 200, 
@@ -27,19 +27,19 @@ class VerifyPhonetAgeTest extends TestCase
                             );
     }
 
-    public function test_verifyphone_invalidparameter()
+    public function test_verifytaxcompany_invalidparameter()
     {
         $data = [
-            'trx_id' => "01",
-            'nik' => "",
-            'phone' => "6281283693380",
+            "trx_id" => "",
+            "npwp" => "",
+            "income" => "1500000000"
         ];
 
-        $respons = $this->post(route('verify.phone.age'), $data);
+        $respons = $this->post(route('verify.tax.company'), $data);
         $respons->assertJson(
                                 [
                                     'status' => 200, 
-                                    'errors' => ['nik' => "invalid"]
+                                    'errors' => ['npwp' => "invalid"]
                                 ]
                             );
     }

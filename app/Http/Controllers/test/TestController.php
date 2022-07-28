@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\test;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+
+use GuzzleHttp\Client;
+use Log;
 
 class TestController extends Controller
 {
@@ -33,9 +38,91 @@ class TestController extends Controller
     }
 
     public function liveness_detection(Request $request){
-      
+        $fileTest = $request->file('file');
+        $gestures_set = $request->input('gestures_set');
+        // return $this->respondWithToken($token);
+
+        return $this->handle($gestures_set, $fileTest);
     }
 
+    public static function handle($gesturesSet, $images)
+    {
+        $livenessData = [
+            [
+                'name'     => 'gestures_set',
+                'contents' => $gesturesSet
+            ]
+        ];
+
+        $no = 1;
+
+        foreach ( $images as $image )
+        {
+            $livenessData[] = [
+                'name'     => 'file',
+                'contents' => fopen($image, 'r'),
+                'filename' => $no . '.jpg'
+            ];
+
+            $no++;
+        }
+
+        $client = new Client;
+
+        $params = [
+            'verify' => false,
+            'debug' => false,
+            'timeout' => 30,
+            'headers' => [
+                'Accept' => 'application/json',
+                // 'Content-Type' => 'image/png',  
+                // 'X-CSRF-TOKEN' => csrf_token(),  
+                'Token' => 'ZDIwYmUxMDEtYjcxNi00OGE0LWI3MDUtMzdjZTAzYThkMzFk',
+            ],
+            'multipart' => $livenessData
+        ];
+
+        try
+        {
+            $client = $client->request('POST', "https://api.digidata.ai/cp_digidata/liveness_detection", $params);
+
+            $response = json_decode($client->getBody(), TRUE);
+
+            return [
+                'status' => true,
+                'response' => $response
+            ];
+        }
+        catch ( \Exception $e )
+        {
+            Log::error(__METHOD__ . ': '. $e->getMessage());
+
+            return [
+                'status' => false,
+                'message' => $e->getMessage()
+            ];
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     public function verify_basic(Request $request){
         $trx_id = $request->input('trx_id');
         $nik = $request->input('nik');
@@ -325,6 +412,54 @@ class TestController extends Controller
                 "trx_id" => $trx_id,
                 "phone" => $phone,
                 "address" => $address
+
+               
+            ]);
+            return $fileUpload->json();
+    }
+
+    public function negative_list(Request $request){
+        $nik = $request->input('nik');
+        $name = $request->input('name');
+        $pob = $request->input('pob');
+        $dob = $request->input('dob');
+
+
+        $fileUpload = Http::withHeaders([
+            'Accept' => 'application/json',
+            // 'Content-Type' => 'multipart/form-data',  
+            // 'X-CSRF-TOKEN' => csrf_token(),  
+            'Token' => 'ZDIwYmUxMDEtYjcxNi00OGE0LWI3MDUtMzdjZTAzYThkMzFk',
+            ])->post('https://api.digidata.ai/cp_digidata/negative_list',[
+                "_token"=> "{{ csrf_token() }}",
+
+                "nik" => $nik,
+                "name" => $name,
+                "pob" => $pob,
+                "dob" => $dob
+
+               
+            ]);
+            return $fileUpload->json();
+    }
+
+    public function verify_tax_company(Request $request){
+        $trx_id = $request->input('trx_id');
+        $npwp = $request->input('npwp');
+        $income = $request->input('income');
+
+
+        $fileUpload = Http::withHeaders([
+            'Accept' => 'application/json',
+            // 'Content-Type' => 'multipart/form-data',  
+            // 'X-CSRF-TOKEN' => csrf_token(),  
+            'Token' => 'ZDIwYmUxMDEtYjcxNi00OGE0LWI3MDUtMzdjZTAzYThkMzFk',
+            ])->post('https://api.digidata.ai/cp_digidata/verify_tax_company',[
+                "_token"=> "{{ csrf_token() }}",
+
+                "trx_id"    => $trx_id,
+                "npwp"      => $npwp,
+                "income"    => $income
 
                
             ]);

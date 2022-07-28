@@ -17,7 +17,7 @@ class VerifyBasicTest extends TestCase
     use WithoutMiddleware;
 
 
-    public function test_verify_basic_data_filled_true()
+    public function test_verifybasic_all_true()
     {
         $data = [
             "trx_id"=> "01",
@@ -38,7 +38,7 @@ class VerifyBasicTest extends TestCase
 
     }
 
-    public function test_verify_basic_no_data()
+    public function test_verifybasic_datanotfound()
     {
         $data = [
             "trx_id"=> "01",

@@ -10,7 +10,7 @@ class TaxExtraeTest extends TestCase
 {
     use WithoutMiddleware;
 
-    public function test_test_tax_extrae_data_filled_true()
+    public function test_taxextrae_all_true()
     {
         $data = [
             
@@ -21,8 +21,6 @@ class TaxExtraeTest extends TestCase
                 "name"      => "usup suparta",
                 "birthdate" => "28-04-1996",
                 "birthplace"=> "bogor"
-            
-            
         ];
 
         $respons = $this->post(route('verify.tax.extra'), $data);

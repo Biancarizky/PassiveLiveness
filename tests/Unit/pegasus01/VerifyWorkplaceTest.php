@@ -10,7 +10,7 @@ class VerifyWorkplaceTest extends TestCase
 {
     use WithoutMiddleware;
 
-    public function test_test_verify_workplace_data_filled_true()
+    public function test_verifyworkplace_all_true()
     {
         $data = [
             
