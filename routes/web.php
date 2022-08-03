@@ -61,5 +61,7 @@ Route::group(['prefix' => 'test'], function() use ($router){
 
         Route::post('negative-list',      'negative_list')->name('negative.list');
         Route::post('verify-tax-company',      'verify_tax_company')->name('verify.tax.company');
+        Route::post('verify-income',      'verify_income')->name('verify.income');
+        Route::post('home-address-percentage',      'home_address_percentage')->name('home.address.percentage');
     });
 });
