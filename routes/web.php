@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use app\Http\Controllers\FileUploadController;
 use App\Http\Controllers\test\TestController;
+use App\Http\Controllers\test\TestPegasus02Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,52 @@ Route::get('upload', 'App\Http\Controllers\FileUploadController@index');
 
 Route::post('upload', 'App\Http\Controllers\FileUploadController@upload')->name('upload');
 
+Route::group(['prefix' => 'test-02'], function() use ($router){
+    Route::controller(TestPegasus02Controller::class)->group(function () {
+        Route::post('ocr-extra',             'ocr_extra')->name('ocr.extra.02');
+        Route::post('checkid',             'checkid')->name('checkid');
+        Route::post('basicid',             'basicid')->name('basicid');
+        Route::post('selfie-checkid',             'selfie_checkid')->name('selfie.checkid');
+        Route::post('completeid',             'completeid')->name('completeid');
+        Route::post('completeid-autofix',             'completeid_autofix')->name('completeid.autofix');
+        Route::post('face-match',             'face_match')->name('face.match');
+        Route::post('face-match-autofix',             'face_match_autofix')->name('face.match.autofix');
+        Route::post('auto-face-crop',             'auto_face_crop')->name('auto.face.crop');
+        Route::post('ibu',             'ibu')->name('ibu');
+        Route::post('telepon',             'telepon')->name('telepon');
+        Route::post('telepon-total',             'telepon_total')->name('telepon.total');
+        Route::post('telepon-durasi',             'telepon_durasi')->name('telepon.durasi');
+        Route::post('pendapatan-nik',             'pendapatan_nik')->name('pendapatan.nik');
+        Route::post('pendapatan',             'pendapatan')->name('pendapatan');
+        Route::post('pendapatan-perseroan',             'pendapatan_perseroan')->name('pendapatan.perseroan');
+        Route::post('properti',             'properti')->name('properti');
+        Route::post('tempat-kerja',             'tempat_kerja')->name('tempat.kerja');
+        Route::post('shareholder',             'shareholder')->name('shareholder');
+        Route::post('alamat-rumah-percentage',             'alamat_rumah_percentage')->name('alamat.rumah.percentage');
+        Route::post('alamat-kantor-percentage',             'alamat_kantor_percentage')->name('alamat.kantor.percentage');
+        Route::post('negative-list',             'negative_list')->name('negative.list02');
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::group(['prefix' => 'test'], function() use ($router){
     Route::controller(TestController::class)->group(function () {
         Route::post('ocr-extra',             'test_ocr_extra')->name('ocr.extra');
@@ -61,5 +108,7 @@ Route::group(['prefix' => 'test'], function() use ($router){
 
         Route::post('negative-list',      'negative_list')->name('negative.list');
         Route::post('verify-tax-company',      'verify_tax_company')->name('verify.tax.company');
+        Route::post('verify-income',      'verify_income')->name('verify.income');
+        Route::post('home-address-percentage',      'home_address_percentage')->name('home.address.percentage');
     });
 });

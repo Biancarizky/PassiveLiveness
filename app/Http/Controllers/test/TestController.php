@@ -83,18 +83,21 @@ class TestController extends Controller
             // $noGesturesSet++;
         }
 
-        dd($livenessData);
+        // dd($livenessData);
     }
 
 
     public static function handle($gesturesSet, $images)
     {
+        // dd($gesturesSet);
         $livenessData = [
             [
                 'name'     => 'gestures_set',
                 'contents' => $gesturesSet
             ]
         ];
+
+        
 
         // $noGesturesSet = 1;
 
@@ -516,6 +519,58 @@ class TestController extends Controller
                 "trx_id"    => $trx_id,
                 "npwp"      => $npwp,
                 "income"    => $income
+
+               
+            ]);
+            return $fileUpload->json();
+    }
+
+    public function verify_income(Request $request){
+        $trx_id = $request->input('trx_id');
+        $nik = $request->input('nik');
+        $income = $request->input('income');
+        $name = $request->input('name');
+        $birthdate = $request->input('birthdate');
+        $birthplace = $request->input('birthplace');
+
+
+        $fileUpload = Http::withHeaders([
+            'Accept' => 'application/json',
+            // 'Content-Type' => 'multipart/form-data',  
+            // 'X-CSRF-TOKEN' => csrf_token(),  
+            'Token' => 'ZDIwYmUxMDEtYjcxNi00OGE0LWI3MDUtMzdjZTAzYThkMzFk',
+            ])->post('https://api.digidata.ai/cp_digidata/verify_income',[
+                "_token"=> "{{ csrf_token() }}",
+
+                "trx_id" => $trx_id,
+                "nik" => $nik,
+                "income"=> $income,
+                "name"=> $name,
+                "birthdate"=> $birthdate,
+                "birthplace"=> $birthplace
+
+               
+            ]);
+            return $fileUpload->json();
+    }
+
+    public function home_address_percentage(Request $request){
+        $trx_id = $request->input('trx_id');
+        $phone = $request->input('phone');
+        $address = $request->input('address');
+
+
+        $fileUpload = Http::withHeaders([
+            'Accept' => 'application/json',
+            // 'Content-Type' => 'multipart/form-data',  
+            // 'X-CSRF-TOKEN' => csrf_token(),  
+            'Token' => 'ZDIwYmUxMDEtYjcxNi00OGE0LWI3MDUtMzdjZTAzYThkMzFk',
+            ])->post('https://api.digidata.ai/cp_digidata/home_address_percentage',[
+                "_token"=> "{{ csrf_token() }}",
+
+                "trx_id" => $trx_id,
+                "phone" => $phone,
+                "address"=> $address
 
                
             ]);
